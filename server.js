@@ -12,9 +12,7 @@ const cookieParser = require('cookie-parser');
 // Para usar variáveis de ambiente (recomendado para JWT_SECRET em produção)
 // require('dotenv').config(); 
 
-```javascript
 require('dotenv').config();
-```
 
 const JWT_SECRET = process.env.JWT_SECRET; 
 // ...
