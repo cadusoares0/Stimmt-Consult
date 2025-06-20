@@ -11,13 +11,18 @@ const cookieParser = require('cookie-parser');
 
 // Para usar variáveis de ambiente (recomendado para JWT_SECRET em produção)
 // require('dotenv').config(); 
-const JWT_SECRET = process.env.JWT_SECRET || 'DeWohin1998!'; // Use env var ou fallback
 
+```javascript
+require('dotenv').config();
+```
+
+const JWT_SECRET = process.env.JWT_SECRET; 
+// ...
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'stimmt',
-    password: 'DeWohin1998!',
-    database: 'stimmtconsult'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 // --- 1. CONFIGURAÇÕES DE MIDDLEWARE GERAIS (DEVEM VIR NO INÍCIO) ---
