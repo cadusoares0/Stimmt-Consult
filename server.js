@@ -685,5 +685,9 @@ app.delete('/remover_cnpj/:cnpj', authenticateToken, async (req, res) => {
 // --- SERVIÇO DE ARQUIVOS ESTÁTICOS (DEVE SER O ÚLTIMO MIDDLEWARE DE ROTA) ---
 app.use(express.static(path.join(__dirname, 'public'))); 
 
-// Inicia o servidor
-app.listen(3000, () => console.log('Proxy rodando em http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    // A mensagem no console log mostrará a porta correta para o ambiente
+    console.log(`Proxy rodando na porta ${PORT} (localmente ou no ambiente de deploy)`);
+});
