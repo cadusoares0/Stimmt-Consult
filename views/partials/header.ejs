@@ -1,0 +1,27 @@
+<header class="main-header">
+    <div class="menu-left">
+        <a href="/dashboard" id="dashboard-link" class="nav-item">Dashboard</a>
+        <a href="/admin/user-management" 
+           id="user-management-link" 
+           class="nav-item"
+           data-is-admin="<%= isAdmin %>" 
+           data-user-modules="<%= JSON.stringify(userModules) %>">
+            Gerenciar Usuários
+        </a>
+    </div>
+    <div class="header-center">
+        <span class="app-title">Stimmt Consult</span>
+    </div>
+    <div class="menu-right">
+        <div class="dropdown">
+            <a href="#" id="userDropdown" class="user-info">
+                <img id="user-icon" src="/assets/images/user.png" alt="Usuário" class="user-icon">
+                <span id="loggedInUserName"><%= userName %></span>
+                <i class="arrow-down"></i>
+            </a>
+            <div class="dropdown-content" id="userDropdownContent">
+                <a href="#" id="logoutButton">Sair<img src="/assets/images/logout.png" alt="Logout" class="logout-button"></a>
+            </div>
+        </div>
+    </div>
+    </header>

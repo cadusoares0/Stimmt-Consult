@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Negado</title>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <style>
+        body { display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex-grow: 1; display: flex; justify-content: center; align-items: center; text-align: center; }
+        .access-denied-container { padding: 40px; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        .access-denied-container h1 { color: #d32f2f; margin-bottom: 20px; }
+        .access-denied-container p { color: #555; margin-bottom: 30px; }
+        .access-denied-container a { display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease; }
+        .access-denied-container a:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header', { userName: userName, isAdmin: isAdmin, userModules: userModules }) %>
+    <main>
+        <div class="access-denied-container">
+            <h1>Acesso Negado!</h1>
+            <p>Você não tem permissão para acessar esta página.</p>
+            <a href="/dashboard">Voltar para o Dashboard</a>
+        </div>
+    </main>
+</body>
+</html>

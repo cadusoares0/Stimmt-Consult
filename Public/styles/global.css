@@ -1,0 +1,20 @@
+body {
+    font-family: 'Poppins', sans-serif; /* Define a fonte principal e um fallback */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6; /* Ou a cor de fundo que você preferir */
+    color: #333; /* Cor de texto padrão */
+    line-height: 1.6;
+}
+
+/* Opcional: para títulos, você pode querer um peso diferente */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Exemplo: títulos mais pesados */
+    color: #222;
+}
+
+/* Garante que outros elementos como botões e inputs também herdem ou tenham a fonte */
+button, input, select, textarea {
+    font-family: 'Poppins', sans-serif;
+}

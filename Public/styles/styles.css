@@ -1,0 +1,370 @@
+/* public/css/consulta-cnpj.css */
+
+/*
+   ATENÇÃO: Este arquivo CSS se concentra APENAS nos estilos
+   específicos da tela de Consulta CNPJ.
+   Estilos globais (fontes, resets, etc.) devem estar em global.css.
+   Estilos do cabeçalho devem estar em header.css.
+*/
+
+/* O container principal da tela de consulta */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto; /* Adicionado margin-top e bottom para espaçar do header */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: calc(100vh - 100px); /* Ajusta altura mínima para que o conteúdo preencha a tela - ajuste 100px conforme seu header e padding */
+}
+
+/* Painel Esquerdo (Lista de CNPJs) */
+.left-panel {
+    flex: 2.3;
+    padding: 20px;
+    border-right: 1px solid #eee;
+    background-color: #f9f9f9;
+    display: flex; /* Para organizar o conteúdo do painel esquerdo */
+    flex-direction: column;
+}
+
+/* Título do Painel Esquerdo (CNPJs) */
+.left-panel h2 { /* Classe .titulo-cnpj já é mais específica no EJS, mas essa serve para o h2 geral no painel */
+    margin-top: 0;
+    color: #333;
+}
+
+/* Cabeçalho dentro do Painel Esquerdo (Título + Botões) */
+.header-cnpj {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.titulo-cnpj { /* Título "CNPJs" */
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #222;
+}
+
+.botoes-cnpj { /* Container dos botões de importar/exportar */
+    display: flex;
+    gap: 10px;
+}
+
+.botoes-cnpj button { /* Estilo dos botões de importar/exportar */
+    background: transparent;
+    border: solid 1px #575757;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.botoes-cnpj button:hover {
+    background: #c7c7c7;
+}
+
+.botoes-cnpj button img { /* Ícones dentro dos botões (importar/exportar) */
+    width: 22px;
+    height: 22px;
+}
+
+/* Container do Input de Busca de CNPJ */
+#input-cnpj-container {
+    display: flex;
+    justify-content: center; /* Centraliza o wrapper de busca */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search-input-wrapper { /* O wrapper para o input e o ícone de lupa */
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 300px; /* Limita a largura do campo de busca */
+}
+
+#input-cnpj { /* O campo de input do CNPJ */
+    width: 100%;
+    padding: 8px 12px 8px 35px; /* Padding à esquerda para o ícone */
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    transition: border 0.2s;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+#input-cnpj:focus {
+    border: 1.5px solid #888;
+    outline: none;
+}
+
+.search-icon { /* Ícone de lupa dentro do input */
+    position: absolute;
+    left: 12px;
+    width: 18px;
+    height: 18px;
+    pointer-events: none; /* Permite clicar no input por trás do ícone */
+}
+
+/* Mensagem "CNPJ não encontrado" e botões "Sim/Não" */
+#cnpj-nao-encontrado {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinha o conteúdo à esquerda dentro do container */
+    margin-top: 8px;
+    padding: 10px;
+    background-color: #ffebee; /* Fundo vermelho claro */
+    border: 1px solid #ef9a9a; /* Borda vermelha clara */
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    flex-wrap: wrap; /* Permite que os itens quebrem linha se a tela for pequena */
+    gap: 10px; /* Espaçamento entre os itens */
+}
+
+.mensagem-cnpj-nao-encontrado {
+    color: #d32f2f; /* Cor do texto vermelho */
+    font-weight: bold;
+    margin-right: auto; /* Empurra os botões para a direita, deixando a mensagem à esquerda */
+}
+
+/* Estilos base para os botões "Sim" e "Não" */
+.btn-acao-cnpj {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    min-width: 70px; /* Garante um tamanho mínimo para o botão */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo para o botão "Sim" (primário) */
+#btn-cadastrar-cnpj-sim {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+#btn-cadastrar-cnpj-sim:hover {
+    background-color: #43a047; /* Verde mais escuro no hover */
+    transform: translateY(-1px);
+}
+
+#btn-cadastrar-cnpj-sim:active {
+    background-color: #388e3c;
+    transform: translateY(0);
+}
+
+/* Estilo para o botão "Não" (secundário) */
+.btn-secundario {
+    background-color: #f0f0f0; /* Cinza claro */
+    color: #555;
+    border: 1px solid #ccc;
+}
+
+.btn-secundario:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-1px);
+}
+
+.btn-secundario:active {
+    background-color: #d0d0d0;
+    transform: translateY(0);
+}
+
+/* Lista de CNPJs (a lista ul) */
+#cnpj-list {
+    flex-grow: 1; /* Permite que a lista ocupe o espaço restante no painel esquerdo */
+    max-height: 70vh; /* Mantido, ajuste conforme a altura desejada */
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 4px #eee;
+    margin-bottom: 8px;
+    padding: 0 0 4px 0;
+    list-style: none; /* Remove marcadores de lista padrão */
+}
+
+/* Itens individuais da lista de CNPJs (li) */
+#cnpj-list li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Para espaçar o nome do CNPJ e o ícone de lixeira/detalhes */
+    padding-right: 8px; 
+}
+
+#cnpj-list li:last-child {
+    border-bottom: none;
+}
+
+#cnpj-list li:hover {
+    background-color: #e0e0e0;
+}
+
+#cnpj-list li.selected { /* Item da lista selecionado */
+    background-color: #eee;
+    color: #000;
+    font-weight: bold;
+}
+
+.empresa-nome { /* Nome da empresa exibido na lista de CNPJs */
+    font-size: 0.85em;
+    color: #555;
+    display: block;
+    margin-top: 2px;
+}
+
+#cnpj-quantidade { /* Contador de CNPJs na lista */
+    font-size: 0.92em;
+    color: #555;
+    margin-top: 4px;
+    text-align: right;
+}
+
+/* Painel Direito (Detalhes do CNPJ) */
+.right-panel {
+    flex: 3; /* Proporção do painel direito (ajuste conforme necessário, ex: 1 ou 3) */
+    background: #f7f7fa;
+    box-shadow: inset 0 0 8px #ddd; /* Sombra interna para destacá-lo */
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 20px; /* Espaço ao redor do painel dentro do container */
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh; /* Altura mínima para o painel */
+}
+
+.right-panel h2 { /* Título "Detalhes do CNPJ" */
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#cnpj-details { /* Área de exibição dos detalhes do CNPJ */
+    flex-grow: 1; /* Permite que ocupe o espaço restante */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
+    background: #f7f7fa; /* Mantém o fundo do painel */
+    padding-right: 10px; /* Padding para evitar que o scrollbar cubra o conteúdo */
+}
+
+#cnpj-details p { /* Parágrafos dentro dos detalhes */
+    margin-bottom: 5px;
+}
+
+/* Estilos para as linhas de informação (rótulo e valor) */
+.info-row {
+    display: flex;
+    align-items: flex-start; /* Alinha o início do texto */
+    margin-bottom: 12px;
+    line-height: 1.4; /* Espaçamento entre as linhas de texto */
+}
+
+.info-label { /* O rótulo da informação (ex: "Razão Social:") */
+    min-width: 140px;
+    font-weight: bold;
+    color: #444;
+    flex-shrink: 0; /* Impede que o rótulo encolha */
+    text-align: left;
+    padding-right: 10px; /* Espaço entre o rótulo e o valor */
+}
+
+.info-value { /* O valor da informação (ex: "Empresa LTDA") */
+    flex: 1;
+    color: #222;
+    word-break: break-word; /* Quebra palavras longas para caber */
+    white-space: pre-line; /* Preserva quebras de linha no texto se houver */
+}
+
+/* Correção importante: Suas regras anteriores para strong, .label, .value */
+/* Remova #cnpj-details strong se você estiver usando .label e .value */
+/* #cnpj-details strong { color: #eee; } estava incorreto */
+
+/* Seus estilos para .label e .value estão corretos e devem ser usados */
+/* Eles devem ser aplicados no seu HTML como <span class="label"> e <span class="value"> */
+
+/* Mensagens de Carregamento e Erro */
+#loading-message {
+    display: none; /* Controlado por JS */
+    text-align: center;
+    padding: 20px;
+    color: #007bff;
+    font-size: 1.1em;
+}
+
+#error-message {
+    display: none; /* Controlado por JS */
+    text-align: center;
+    padding: 20px;
+    color: #d32f2f; /* Vermelho de erro */
+    font-weight: bold;
+}
+
+/* Estilos para o overlay de carregamento em massa (mass-loading) */
+#mass-loading {
+    display: none; /* Controlado por JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255,255,255,0.8);
+    z-index: 9999;
+    display: flex; /* Garante que os filhos sejam flex item para centralização */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#mass-loading div { /* Texto e barra de progresso dentro do loading */
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#mass-progress { /* Barra de progresso (se for implementada com JS) */
+    width: 200px;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    /* Adicione estilos para o preenchimento da barra de progresso via JS */
+}
+
+/* Remover estas regras se elas não forem usadas no EJS */
+/*
+.mass-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mass-msg {
+    padding: 6px 0 2px 0;
+    text-align: center;
+}
+
+.cnpj-info {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 18px 0px;
+    background: #f7f7fa;
+    border-radius: 8px;
+}
+*/

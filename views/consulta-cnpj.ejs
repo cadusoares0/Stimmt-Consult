@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stimmt Consult | Consulta CNPJ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/global.css"> 
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/consulta-cnpj.css"> 
+    
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <%- include('partials/header', { userName: userName }) %> 
+
+    <div id="mass-loading">
+            <div id="mass-text-progress"></div> <div class="progress-bar-container"> <div id="mass-progress"></div> </div>
+    </div>
+    <div class="container">
+        <div class="left-panel">
+            <div class="header-cnpj">
+                <div class="header-cnpj-title">
+                    <h2 class="titulo-cnpj">CNPJs</h2>
+                </div>
+                <div class="botoes-cnpj">
+                    <button id="btn-consulta-massa" title="Importar Arquivo com CNPJ's">
+                        <img src="assets/images/import.svg" alt="Importar" style="width: 22px; height: 22px;">
+                    </button> 
+                    <button id="btn-exportar-excel" title="Exportar CNPJ's para Excel">
+                        <img src="assets/images/export-file1.svg" alt="Exportar Arquivo" style="width: 22px; height: 22px;">
+                    </button>
+                    </div>
+            </div>
+            <div>
+                <input type="file" id="input-excel" accept=".xlsx, .xls" style="display: none;">
+            </div>
+            <div id="input-cnpj-container" style="margin-bottom:10px;">
+                <div class="search-input-wrapper">
+                    <input type="text" id="input-cnpj" placeholder="Pesquise ou adicione um CNPJ..." maxlength="18">
+                    <img src="assets/images/search.svg" alt="Ícone de Lupa" class="search-icon">
+                </div>
+            </div>
+            <div id="cnpj-nao-encontrado" style="display:none; margin-top:8px;">
+                <span class="mensagem-cnpj-nao-encontrado">CNPJ não encontrado. Deseja cadastrar?</span>
+                <button id="btn-cadastrar-cnpj-sim" class="btn-acao-cnpj">Sim</button>
+                <button id="btn-cadastrar-cnpj-nao" class="btn-acao-cnpj btn-secundario">Não</button>
+            </div>
+            <ul id="cnpj-list"></ul>
+            <div id="cnpj-quantidade" style="font-size:0.92em;color:#555;margin-top:4px;text-align:right;"></div>
+        </div>
+
+        <div class="right-panel">
+            <h2>Detalhes do CNPJ</h2>
+            <div id="cnpj-details">
+                <p>Selecione um CNPJ na lista para ver os detalhes.</p>
+            </div>
+            <div id="loading-message" style="display: none;">Carregando...</div>
+            <div id="error-message" style="display: none; color: red;"></div>
+
+            </div>
+    </div>
+
+    <!-- <script src="js/auth.js"></script> -->
+    <script src="js/consulta-cnpj.js"></script> 
+</body>
+</html>

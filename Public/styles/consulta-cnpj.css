@@ -1,0 +1,466 @@
+/* public/css/consulta-cnpj.css */
+
+/*
+   ATENÇÃO: Este arquivo CSS se concentra APENAS nos estilos
+   específicos da tela de Consulta CNPJ.
+   Estilos globais (fontes, resets, etc.) devem estar em global.css.
+   Estilos do cabeçalho devem estar em header.css.
+*/
+
+/* Variáveis CSS para Cores (melhor para manutenção futura) */
+:root {
+    /* Paleta "Serenidade Cítrica" */
+    --primary-blue: #66B2B2; /* Azul esverdeado / Ciano suave - para botões de ação e destaques */
+    --accent-green: #A3D8B0; /* Verde pastel suave - para sucesso (alternativa ao primary) */
+    --soft-gray-bg: #F8F9FA; /* Fundo muito leve, quase branco */
+    --light-gray-border: #E8EDF2; /* Bordas e divisores sutis, com toque azulado */
+    --medium-gray-text: #5F6B75; /* Texto secundário, cinza azulado */
+    --dark-text: #34495E; /* Texto principal e títulos, azul marinho escuro */
+    --hover-bg: #EAEFF4; /* Fundo ao passar o mouse, cinza azulado claro */
+    --selected-bg: #DCEFFB; /* Fundo de item selecionado, azul bem clarinho */
+    --highlight-yellow: #FFD700; /* Amarelo cítrico para ícones de destaque ou pequenos elementos */
+    --error-red: #D9534F; /* Vermelho para erros, suave */
+    --warning-bg: #FFF8E1; /* Fundo para avisos (CNPJ não encontrado), amarelo muito claro */
+    --warning-border: #FFECB3; /* Borda para avisos, amarelo claro */
+    --warning-text: #FFAB00; /* Texto para avisos, laranja âmbar */
+}
+
+
+/* O container principal da tela de consulta */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+    border-radius: 10px; /* Cantos mais arredondados */
+    overflow: hidden;
+    min-height: calc(100vh - 100px);
+}
+
+/* Painel Esquerdo (Lista de CNPJs) */
+.left-panel {
+    flex: 2.3;
+    padding: 20px;
+    border-right: 1px solid var(--light-gray-border); /* Cor da borda suave */
+    background-color: var(--soft-gray-bg); /* Fundo suave */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título do Painel Esquerdo (CNPJs) */
+.left-panel h2 {
+    font-size: 22px;
+    margin-top: 0;
+    color: var(--dark-text); /* Cor de texto mais escura */
+}
+
+/* Cabeçalho dentro do Painel Esquerdo (Título + Botões) */
+.header-cnpj {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.titulo-cnpj {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--dark-text); /* Cor de texto mais escura */
+}
+
+.botoes-cnpj {
+    display: flex;
+    gap: 10px;
+}
+
+.botoes-cnpj button {
+    background: transparent;
+    border: solid 1px var(--light-gray-border); /* Borda mais suave */
+    border-radius: 8px; /* Cantos mais arredondados */
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.botoes-cnpj button:hover {
+    background: var(--hover-bg); /* Fundo no hover */
+    border-color: var(--primary-blue); /* Borda no hover */
+}
+
+.botoes-cnpj button img {
+    /* Ícones padrão mais escuros, mas não pretos */
+    filter: invert(30%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%); 
+    width: 22px;
+    height: 22px;
+}
+
+/* Container do Input de Busca de CNPJ */
+#input-cnpj-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+#input-cnpj {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border-radius: 20px;
+    border: 1px solid var(--light-gray-border);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    flex-grow: 1;
+    color: var(--dark-text);
+}
+
+#input-cnpj::placeholder {
+    color: var(--medium-gray-text);
+}
+
+#input-cnpj:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(102, 178, 178, 0.25); /* Sombra suave com a cor primária */
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    filter: invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%); /* Lupa mais suave */
+}
+
+/* Mensagem "CNPJ não encontrado" e botões "Sim/Não" */
+#cnpj-nao-encontrado {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+    padding: 12px;
+    background-color: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);    
+}
+
+.mensagem-cnpj-nao-encontrado {
+    color: var(--warning-text);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+#cnpj-nao-encontrado .button {
+    display: inline-block;
+    margin: 0 8px;
+}
+
+/* Estilos base para os botões "Sim" e "Não" */
+.btn-acao-cnpj {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Estilo para o botão "Sim" (primário) */
+#btn-cadastrar-cnpj-sim {
+    background-color: var(--primary-blue); /* Cor primária */
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#btn-cadastrar-cnpj-sim:hover {
+    background-color: #55A0A0; /* Tom um pouco mais escuro da cor primária */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#btn-cadastrar-cnpj-sim:active {
+    background-color: #4A8E8E;
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o botão "Não" (secundário) */
+.btn-secundario {
+    background-color: #EFEFF3; /* Cinza claro suave */
+    color: var(--medium-gray-text);
+    border: 1px solid var(--light-gray-border);
+}
+
+.btn-secundario:hover {
+    background-color: #E0E0E5;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secundario:active {
+    background-color: #D3D3D8;
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Lista de CNPJs (a lista ul) */
+#cnpj-list {
+    flex-grow: 1;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 8px;
+    padding: 0 0 4px 0;
+    list-style: none;
+}
+
+/* Itens individuais da lista de CNPJs (li) */
+#cnpj-list li {
+    display: flex; /* ATENÇÃO: Confirma que esta propriedade está presente */
+    align-items: center; /* Centraliza verticalmente o conteúdo */
+    justify-content: space-between; /* Empurra a lixeira para a direita e o texto para a esquerda */
+    padding: 12px 18px; /* Seu padding atual */
+    cursor: pointer;
+    border-bottom: 1px solid var(--light-gray-border);
+    transition: background-color 0.2s ease;
+    /* remove o padding-right: 12px; se você tiver, pois o justify-content: space-between já cuida disso. */
+}
+
+#cnpj-list li .cnpj-info-text {
+    flex-grow: 1; /* Permite que este container de texto ocupe o máximo de espaço possível */
+    margin-right: 10px; /* Garante um pequeno espaçamento entre o texto e a lixeira */
+    overflow: hidden; /* Oculta qualquer texto que exceda o container */
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for cortado */
+    white-space: nowrap; /* Impede que o texto quebre linha, forçando o ellipsis */
+}
+
+#cnpj-list li:last-child {
+    border-bottom: none;
+}
+
+#cnpj-list li:hover {
+    background-color: var(--hover-bg);
+}
+
+#cnpj-list li.selected {
+    background-color: var(--selected-bg);
+    color: var(--dark-text);
+    font-weight: 600;
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 14px;
+}
+
+.empresa-nome {
+    font-size: 0.88em;
+    color: var(--medium-gray-text);
+    display: block;
+    margin-top: 2px;
+}
+
+#cnpj-quantidade {
+    font-size: 0.9em;
+    color: var(--medium-gray-text);
+    margin-top: 8px;
+    text-align: right;
+}
+
+/* Painel Direito (Detalhes do CNPJ) */
+.right-panel {
+    flex: 3;
+    background: var(--soft-gray-bg);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+}
+
+.right-panel h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 0;
+    color: var(--dark-text);
+    margin-bottom: 25px;
+}
+
+#cnpj-details {
+    flex-grow: 1;
+    overflow-y: auto;
+    background: var(--soft-gray-bg);
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#cnpj-details p {
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    color: var(--medium-gray-text);
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* Estilos para as linhas de informação (rótulo e valor) */
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 0.95em;
+    width: 100%;
+    max-width: 600px;
+}
+
+.info-label {
+    min-width: 150px;
+    font-weight: 600;
+    color: var(--dark-text);
+    flex-shrink: 0;
+    text-align: left;
+    padding-right: 15px;
+}
+
+.info-value {
+    flex: 1;
+    color: var(--medium-gray-text);
+    word-break: break-word;
+    white-space: pre-line;
+}
+
+
+/* Mensagens de Carregamento e Erro */
+#loading-message {
+    display: none;
+    text-align: center;
+    padding: 25px;
+    color: var(--primary-blue);
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#error-message {
+    display: none;
+    text-align: center;
+    padding: 25px;
+    color: var(--error-red);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Estilos para o overlay de carregamento em massa (mass-loading) */
+#mass-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255,255,255,0.85); /* Fundo semi-transparente claro */
+    z-index: 9999;
+    display: none; /* COMECE COM DISPLAY NONE, O JS VAI MUDAR PARA FLEX */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--dark-text);
+}
+
+/* Estilo para o container do texto de progresso */
+#mass-text-progress {
+    font-size: 1.3em;
+    margin-bottom: 15px; /* Espaçamento entre o texto e a barra */
+    font-weight: 500;
+    color: var(--dark-text); /* Garante a cor do texto */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Novo container para a barra de progresso (o "trilho" da barra) */
+.progress-bar-container {
+    width: 250px; /* Largura total da barra VISUAL */
+    height: 25px;
+    background-color: var(--light-gray-border); /* Cor de fundo da barra vazia */
+    border-radius: 12px;
+    overflow: hidden; /* Garante que o preenchimento não saia para fora */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* O elemento que será o preenchimento da barra */
+#mass-progress {
+    height: 100%; /* Ocupa a altura do container */
+    width: 0%; /* Começa vazio, JS vai controlar */
+    background-color: var(--primary-blue); /* Cor de preenchimento */
+    transition: width 0.3s ease-out, background-color 0.3s ease; /* Transição suave */
+    border-radius: 12px; /* Garante cantos arredondados no preenchimento também */
+}
+
+
+#mass-loading div {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+#mass-progress {
+    width: 250px;
+    height: 25px;
+    background-color: var(--light-gray-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Placeholder para a barra de progresso interna (preenchida por JS) */
+#mass-progress::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0%; /* Será preenchido por JS */
+    background-color: var(--primary-blue); /* Cor de preenchimento da barra */
+    border-radius: 12px;
+    transition: width 0.3s ease-out; /* Transição suave para o progresso */
+}
+
+.lixeira-img {
+    width: 18px; /* Largura da sua imagem. Já definida no JS inline antes, mas agora controlada pelo CSS. */
+    height: 18px; /* Altura da sua imagem. */
+    vertical-align: middle; /* Ajuda a alinhar a imagem com o texto adjacente, se precisar. */
+    cursor: pointer; /* Indica que é clicável */
+    margin-left: 10px; /* Espaçamento entre o texto do CNPJ e a lixeira */
+    
+    /* Propriedades para o efeito de hover suave */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Animação suave para opacidade e escala */
+}
+
+/* Efeito ao passar o mouse sobre a imagem da lixeira */
+.lixeira-img:hover {
+    opacity: 0.7; /* Torna a imagem ligeiramente transparente (70% opaca) */
+    transform: scale(1.1); /* Aumenta a imagem em 10% */
+}

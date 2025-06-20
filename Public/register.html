@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stimmt Consult - Cadastro</title>
+    <link rel="stylesheet" href="styles/register.css"> <link rel="stylesheet" href="styles/styles.css"> </head>
+<body>
+    <div class="register-container">
+        <h1 class="app-title">Stimmt Consult</h1>
+        <h2>Cadastro de Usuário</h2>
+        <form id="registerForm">
+            <div class="input-group">
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirmar Senha:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="input-group checkbox-group">
+                <input type="checkbox" id="isAdmin" name="isAdmin">
+                <label for="isAdmin">Tornar administrador?</label>
+            </div>
+            <div class="input-group checkbox-group">
+                <label>Módulos:</label>
+                <input type="checkbox" id="modCnpj" name="modulos" value="cnpj_consult">
+                <label for="modCnpj">Consulta CNPJ</label>
+                <input type="checkbox" id="modUserMgmt" name="modulos" value="gerenciamento_usuarios">
+                <label for="modUserMgmt">Gerenciamento de Usuários</label>
+                </div>
+            
+            <button type="submit" class="register-button">Cadastrar</button>
+            <p id="message" class="message"></p>
+        </form>
+        <p class="link-back-to-login">Já tem uma conta? <a href="index.html">Faça Login</a></p>
+    </div>
+
+    <script src="register.js"></script> </body>
+</html>

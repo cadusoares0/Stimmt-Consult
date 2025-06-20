@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stimmt Consult - Dashboard</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/global.css"> 
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/main.css"> 
+</head>
+<body>
+    <%- include('partials/header', { userName: userName, isAdmin: isAdmin, userModules: userModules }) %>
+
+    <main class="dashboard-content">
+        <h1>Bem-vindo ao Dashboard, <%= userName %>!</h1>
+        <p>Selecione um módulo para começar:</p>
+
+        <div class="module-cards">
+            <a href="/consulta-cnpj" class="module-card" id="cnpjModuleCard">
+                <h3>Consulta CNPJ</h3>
+                <p>Consulte dados de empresas pelo número do CNPJ.</p>
+            </a>
+
+            <a href="/admin/user-management" class="module-card admin-only" id="userManagementModuleCard" style="display:none;">
+                <h3>Gerenciamento de Usuários</h3>
+                <p>Adicione, edite ou remova usuários do sistema.</p>
+            </a>
+
+            </div>
+
+        <p id="accessDeniedMessage" class="message error" style="display:none;"></p>
+
+    </main>
+
+    <!-- <script src="js/auth.js"></script> -->
+    <script src="js/main.js"></script>
+    <script src="/js/header.js"></script>
+</body>
+</html>

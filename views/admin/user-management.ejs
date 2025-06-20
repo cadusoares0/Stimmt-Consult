@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stimmt Consult - Gerenciamento de Usuários</title>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/user-management.css"> </head>
+<body>
+    <%- include('../partials/header', { userName: userName, isAdmin: isAdmin, userModules: userModules }) %>
+
+    <main class="container">
+        <section class="user-management-section">
+            <div class="section-header">
+                <h2>Gerenciamento de Usuários</h2>
+                <button id="add-user-btn" class="btn-primary">Adicionar Usuário</button>
+            </div>
+
+            <div class="search-filter-area">
+                <input type="text" id="user-search" placeholder="Buscar por nome ou email...">
+            </div>
+
+            <div class="user-table-container">
+                <table id="user-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Permissão</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+                <p id="no-users-message" style="display:none;">Nenhum usuário encontrado.</p>
+            </div>
+        </section>
+
+        <div id="user-form-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h3 id="form-title">Cadastrar Novo Usuário</h3>
+                <form id="user-form">
+                    <input type="hidden" id="user-id">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" placeholder="Deixe em branco para não alterar">
+
+                    <label for="role">Permissão:</label>
+                    <select id="role" name="role" required>
+                        <option value="user">Usuário Padrão</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="active">Ativo</option>
+                        <option value="inactive">Inativo</option>
+                        <option value="blocked">Bloqueado</option>
+                    </select>
+
+                    <button type="submit" id="submit-form-btn" class="btn-primary">Salvar</button>
+                    <button type="button" id="cancel-form-btn" class="btn-secundario">Cancelar</button>
+                </form>
+                <div id="form-message" class="error-message" style="display:none;"></div>
+            </div>
+        </div>
+    </main>
+
+    
+    <script src="/js/user-management.js"></script>
+    <script src="/js/header.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+/* Exemplo de CSS básico para user-management.css */
+.user-management-section {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#user-table th, #user-table td {
+    border: 1px solid var(--light-gray-border);
+    padding: 10px;
+    text-align: left;
+}
+
+#user-table th {
+    background-color: var(--soft-gray-bg);
+    font-weight: bold;
+}
+
+/* Estilos para o modal (semelhantes aos que você já tem para outros modais, se houver) */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fica acima de tudo */
+    z-index: 1000; /* Alto z-index para sobrepor tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilita scroll se o conteúdo for muito grande */
+    background-color: rgba(0,0,0,0.4); /* Fundo escuro semi-transparente */
+    display: flex; /* Para centralizar o conteúdo do modal */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para formulário dentro do modal */
+#user-form label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+#user-form input[type="text"],
+#user-form input[type="email"],
+#user-form input[type="password"],
+#user-form select {
+    width: calc(100% - 22px); /* Considerando padding e borda */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--light-gray-border);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#user-form button {
+    margin-right: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px; /* Espaçamento entre os botões de ação na tabela */
+}
+
+.action-buttons button {
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.edit-btn {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+}
+.edit-btn:hover {
+    background-color: #55A0A0;
+}
+
+.delete-btn {
+    background-color: var(--error-red);
+    color: white;
+    border: none;
+}
+.delete-btn:hover {
+    background-color: #C94844;
+}
+
+/* Mensagem de erro/sucesso do formulário */
+.form-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.error-message {
+    background-color: #ffe0e0;
+    color: var(--error-red);
+    border: 1px solid var(--error-red);
+}
+.success-message {
+    background-color: #e0ffe0;
+    color: var(--accent-green);
+    border: 1px solid var(--accent-green);
+}

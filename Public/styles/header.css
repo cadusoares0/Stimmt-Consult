@@ -1,0 +1,188 @@
+/* public/css/header.css */
+
+:root {
+    /* Paleta "Serenidade Cítrica" */
+    --primary-blue: #66B2B2; /* Azul esverdeado / Ciano suave - para botões de ação e destaques */
+    --accent-green: #A3D8B0; /* Verde pastel suave - para sucesso (alternativa ao primary) */
+    --soft-gray-bg: #F8F9FA; /* Fundo muito leve, quase branco */
+    --light-gray-border: #E8EDF2; /* Bordas e divisores sutis, com toque azulado */
+    --medium-gray-text: #5F6B75; /* Texto secundário, cinza azulado */
+    --dark-text: #34495E; /* Texto principal e títulos, azul marinho escuro */
+    --hover-bg: #EAEFF4; /* Fundo ao passar o mouse, cinza azulado claro */
+    --selected-bg: #DCEFFB; /* Fundo de item selecionado, azul bem clarinho */
+    --highlight-yellow: #FFD700; /* Amarelo cítrico para ícones de destaque ou pequenos elementos */
+    --error-red: #D9534F; /* Vermelho para erros, suave */
+    --warning-bg: #FFF8E1; /* Fundo para avisos (CNPJ não encontrado), amarelo muito claro */
+    --warning-border: #FFECB3; /* Borda para avisos, amarelo claro */
+    --warning-text: #FFAB00; /* Texto para avisos, laranja âmbar */
+}
+
+.main-header {
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; REMOVA ESTA PROPRIEDADE (já comentada, bom!) */
+    padding: 0 32px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Centraliza o título da aplicação */
+.header-center {
+    flex-grow: 1; /* Permite que ocupe o espaço disponível */
+    text-align: center; /* Centraliza o texto dentro dele */
+    min-width: 0; 
+}
+
+.header-center .app-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #444;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* NOVO CÓDIGO: Ajuste para os menus laterais */
+.menu-left,
+.menu-right {
+    /* Use flex-basis para dar um tamanho base e flex-grow para que eles cresçam igualmente */
+    flex: 1; /* Equivalente a flex-grow: 1; flex-shrink: 1; flex-basis: 0%; */
+    display: flex; /* Para alinhar o conteúdo interno, se necessário */
+    align-items: center;
+    /* Adicione justify-content para alinhar o conteúdo dentro de cada menu */
+}
+
+.menu-left {
+    justify-content: flex-start; /* Alinha o conteúdo à esquerda */
+    gap: 15px; /* Adiciona espaçamento entre os itens do menu-left (ex: Dashboard e Gerenciar Usuários) */
+}
+
+.menu-right {
+    justify-content: flex-end; /* Alinha o conteúdo à direita */
+    position: relative; /* Mantido para o dropdown */
+}
+
+/* --- NOVO ESTILO: Link "Dashboard" e outros itens de navegação (se houver) --- */
+.nav-item {
+    font-weight: 600; /* Mais destaque */
+    color: var(--primary-blue); /* Usando a variável de cor que você definiu em consulta-cnpj.css */
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap; /* Evita que o texto quebre linha */
+}
+
+.nav-item:hover {
+    background-color: var(--hover-bg); /* Usando a variável de cor de hover */
+    color: var(--dark-text); /* Cor de texto mais escura no hover */
+}
+
+/* Se você usar ícones no futuro para esses itens, pode adicionar regras aqui */
+.nav-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+
+/* Mantenha o restante do seu CSS inalterado */
+.user-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.2s ease;
+    text-decoration: none;
+}
+
+.user-info:hover {
+    background: #f0f0f0;
+}
+
+.user-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+#loggedInUserName {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+.arrow-down {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
+.user-info.active .arrow-down {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+    top: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.logout-button {
+    width: 18px; 
+    height: 18px; 
+    margin-left: 10px; 
+    vertical-align: middle; 
+}
+
+/* Exemplo de Media Query para telas menores */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 0 16px; /* Reduz o padding lateral */
+    }
+    .header-center .app-title {
+        font-size: 1em; /* Reduz o tamanho da fonte */
+    }
+    /* Você pode ajustar o 'gap' ou 'flex' dos menus se eles estiverem se espremendo */
+}
